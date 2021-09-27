@@ -2,24 +2,6 @@
 
 OpenCore EFI files for the Dell Inspiron N5110. This EFI was built for macOS Big Sur, but can be modified to fully work with older versions.
 
-## What works.
-
-CPU
-GPU
-Audio
-Input
-  USB
-  eSATA
-  Keyboard
-  Trackpad
-HDMI
-Network
-  WiFi
-  Bluetooth
-  Ethernet
- CD-DVD
- SD Card Reader
- 
 | Type | Model | Works? | Notes |
 | --- | --- | --- | --- |
 | CPU | Intel Core i7-2670QM | Yes | Highly recommend upgrading the CPU. Will test Core i7-3xxx compatibility with this computer soon. |
@@ -31,7 +13,7 @@ Network
 | eSATA | N/A | Yes | Acts as a USB port in macOS. |
 | Keyboard | N/A | Most likely | I just forgot to add the keyboard kexts. |
 | Trackpad | ALPS PS/2 | Maybe? | My trackpad is broken, unable to test. |
-| HDMI | N/A | 50/50 | See the below section on graphics. |
+| HDMI | N/A | 50/50 | See GRAPHICS.md |
 | WiFi | Broadcom BCM94352Z | Yes | |
 | Bluetooth | Broadcom BCM94352Z | Yes | Supports native macOS Continuity features as well. |
 | Ethernet | Currently unknown | Maybe? | Ethernet port is broken, unable to test. |
