@@ -2,6 +2,8 @@
 
 OpenCore EFI files for the Dell Inspiron N5110. This EFI was built for macOS Big Sur, but can be modified to fully work with older versions.
 
+OpenCore Version: 0.7.4
+
 | Type | Model | Works? | Notes |
 | --- | --- | --- | --- |
 | CPU | Intel Core i7-2670QM | Yes | Highly recommend upgrading the CPU. Will test Core i7-3xxx compatibility with this computer soon. |
