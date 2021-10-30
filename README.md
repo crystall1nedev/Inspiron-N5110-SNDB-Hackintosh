@@ -1,8 +1,8 @@
 # Inspiron-N5110-SNDB-Hackintosh
 
-OpenCore EFI files for the Dell Inspiron N5110. This EFI was built for macOS Big Sur, but can be modified to fully work with older versions.
+OpenCore EFI files for the Dell Inspiron N5110. This EFI was built for macOS Monterey, but can be modified to fully work with older versions.
 
-OpenCore Version: 0.7.4
+OpenCore Version: 0.7.5
 
 | Type | Model | Works? | Notes |
 | --- | --- | --- | --- |
