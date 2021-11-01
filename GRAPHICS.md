@@ -46,7 +46,7 @@ All of the GPUs that can come inside of an N5110 are non-Metal, meaning that the
 ## Backlighting issue with the HD3000
 You may have noticed that after applying the patches on your iGPU-only system, **you just lost the backlight.** I don't know the exact cause of this issue but I know it can be solved...
 
-...but you need a modified BIOS to do it. I patched my own custom BIOS to enable the advanced option menu and flashed it--**this is a serious risk and can result in a brick.** I highly recommend that you know what you are doing before flashing with a modified BIOS.
+...but you need a modified BIOS to do it. I patched my own custom BIOS to enable the advanced option menu and flashed it--**this is a serious risk and can result in a brick.** I highly recommend that you know what you are doing before flashing with a modified BIOS. If you don't want to risk bricking your system, you can still use HDMI or enable Remote Management to use your system.
 
 ## Increasing HD3000 VRAM
 The way integrated GPUs work depends on the system memory rather than having its own dedicated RAM. Because of this, the following patch is only available on the Intel HD Graphics 3000 chip and not the ATI or NVIDIA cards that may be inside the system. This patch is also tailored for macOS Big Sur or higher; some commands will fail on Catalina and older. The following chart shows the amount of RAM that the iGPU can access in macOS according to the amount of system memory:
