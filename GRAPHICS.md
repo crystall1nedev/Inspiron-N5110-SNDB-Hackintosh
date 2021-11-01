@@ -6,9 +6,9 @@ All of the GPUs that can come inside of an N5110 are non-Metal, meaning that the
 - Due to the heavy dependence on Metal since Mojave, **there will be glitches!**
 - You **must** have SIP disabled. The current setting for SIP disables only what is required so that OTA updates are possible.
 - Because the patches modify the system volume, **OTA updates will not be deltas** (you will download the entire OS).
-
 - Performing updates **undoes graphics acceleration patches**, and you need to run them again.
 - These patches are known to work on **Big Sur and higher.** Although they may work on Mojave and Catalina, it is not recommended.
+- See the note under the "Patching your system" section.  
 
 *Because I have an iGPU-only configuration, I will only provide support for HD 3000 systems. The patches work on the other configurations, however.*
 
@@ -43,7 +43,12 @@ All of the GPUs that can come inside of an N5110 are non-Metal, meaning that the
 
 3. **Reboot into acceleration!** Simply reboot your system and you'll have hardware acceleration, just like it never left.
 
-## HD3000 VRAM Patching
+## Backlighting issue with the HD3000
+You may have noticed that after applying the patches on your iGPU-only system, **you just lost the backlight.** I don't know the exact cause of this issue but I know it can be solved...
+
+...but you need a modified BIOS to do it. I patched my own custom BIOS to enable the advanced option menu and flashed it--**this is a serious risk and can result in a brick.** I highly recommend that you know what you are doing before flashing with a modified BIOS.
+
+## Increasing HD3000 VRAM
 The way integrated GPUs work depends on the system memory rather than having its own dedicated RAM. Because of this, the following patch is only available on the Intel HD Graphics 3000 chip and not the ATI or NVIDIA cards that may be inside the system. This patch is also tailored for macOS Big Sur or higher; some commands will fail on Catalina and older. The following chart shows the amount of RAM that the iGPU can access in macOS according to the amount of system memory:
 
 | System RAM | iGPU VRAM |
