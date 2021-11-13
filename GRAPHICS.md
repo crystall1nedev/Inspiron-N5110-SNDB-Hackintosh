@@ -4,6 +4,12 @@ Here's a bit of a backstory tl;dr:
 All of the GPUs that can come inside of an N5110 are non-Metal, meaning that they don't support Apple's Metal graphics APIs. With the release of macOS Mojave 10.14 in 2018, all non-Metal GPUs were dropped. The work done by the Dortania team and @ASentientBot has brought back this support, but you need to take note of these main points:
 
 - Due to the heavy dependence on Metal since Mojave, **there will be glitches!**
+  - Blurs are broken all throughout the system, including context and menu bar menus, sidebars, and authentication popups.
+  - Apps that rely on Metal may not work correctly or at all.
+  - Maps and Find My don't show the actual map.
+  - Maps crashes when pressing the text box.
+  - Safari freezes after a while and you need to close the app entirely to fix.
+  - Probably some more quirks I just forgot to add lol
 - You **must** have SIP disabled. The current setting for SIP disables only what is required so that OTA updates are possible.
 - Because the patches modify the system volume, **OTA updates will not be deltas** (you will download the entire OS).
 - Performing updates **undoes graphics acceleration patches**, and you need to run them again.
