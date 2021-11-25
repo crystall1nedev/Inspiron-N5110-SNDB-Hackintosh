@@ -112,11 +112,9 @@ Before we can get you on your way to patching, you need to take note of a few th
  
  Take note that these patches are designed to work with Big Sur and higher, work for older macOS releases is experimental with OpenCore Legacy Patcher and can have unintended side effects. 
  
- Updating macOS has the potential to break acceleration patching as well so hold off on updating until you know that the OS in question is capable of being patched. I'll try my best to keep the table at the bottom of this page up to date with the latest in support.
+ Updating macOS has the potential to break acceleration patching as well so hold off on updating until you know that the OS in question is capable of being patched.
 </details>
 
 ## Patching your system
 
 ## Extra stuff
-
-## OS Support
