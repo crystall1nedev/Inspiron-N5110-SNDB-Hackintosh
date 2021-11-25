@@ -11,6 +11,8 @@ You might notice that none of the cards that were available to order in the Insp
 
 Because of this, we need to do some post-installation steps in order to enable hardware acceleration. Although these patches work, they are still slightly unstable, and they cannot enable features that the graphics card does not support.
 
+![Screen Shot 2021-11-25 at 15 40 25](https://user-images.githubusercontent.com/55281754/143503859-570c53b3-9bcc-4d93-8c93-637d2ea543a1.png)
+
 ## Getting ready
 Before you can do anything, you need to get some things down:
 <details>
@@ -64,6 +66,19 @@ Before you can do anything, you need to get some things down:
 Before we can get you on your way to patching, you need to take note of a few things.
 
 <details>
+ <summary>Glitches and quirks</summary>
+ 
+ Here are some quick notes as to stuff that glitches out:
+  * Blurs are broken all throughout the system, including context and menu bar menus, sidebars, and authentication popups
+    * Can be fixed, see the Extra Stuff section at the end of this page.
+  * Maps and Find My don't show the actual map.
+  * Maps crashes when pressing the text box.
+  * Safari freezes after a while and you need to close the app entirely to fix.
+  * VirtualBox doesn't work right on the HD 3000 (see [Extra Stuff](#Extra-Stuff) to fix it
+    * Can be fixed, see the Extra Stuff section at the end of this page.
+  * Probably some more quirks I just forgot to add lol
+</details>
+<details>
  <summary>Apps that require Metal</summary>
  
  Any app that depends on Metal may not work correctly if it works at all. If you can find older versions of the app you want to use, do so. Some examples of apps requiring Metal:
@@ -116,5 +131,37 @@ Before we can get you on your way to patching, you need to take note of a few th
 </details>
 
 ## Patching your system
+Quick recap of what you need:
 
+* A **working** macOS install, that has not already been patched
+  * So you're not currently hardware accelerated and you haven't run another patcher in the past
+* An internet connection
+* About 500MB of free storage
+
+<p align="center">
+<img width="75%" src="https://user-images.githubusercontent.com/55281754/143503196-76498b7d-6658-44ff-8f27-59c04f94c793.png")
+</p>
+
+1. **Download OpenCore Legacy Patcher.** You can either choose to get the [latest release](https://github.com/dortania/OpenCore-Legacy-Patcher/releases/latest) or the [latest nightly](https://github.com/dortania/OpenCore-Legacy-Patcher/actions?query=branch%3Amain+workflow%3A%22CI+-+Build+TUI%22++). I will be using the TUI variant in this tutorial, but the steps should be similar for the GUI version.
+
+<p align="center">
+<img width="75%" src="https://user-images.githubusercontent.com/55281754/143503222-26246344-b628-4210-aa0f-637b36a5f6fa.png")
+</p>
+
+2. **Open the .app, and run the patcher.** Choose `Patch System Volume` and enter your administrator password when prompted. *Make sure not to build and install an EFI, your Hackintosh will not boot!*
+
+<p align="center">
+<img width="75%" src="https://user-images.githubusercontent.com/55281754/143503409-3bb26684-9ba1-4325-9b13-4c5e6aa661f2.png")
+</p>
+  
+3. **Reboot to finish.** Simply use the Apple menu > Restart to finish applying your patches. 
+
+<p align="center">
+<img width="75%" src="https://user-images.githubusercontent.com/55281754/143503416-b7fb3468-8112-4c2b-8319-e92868466eff.png")
+</p> 
+ 
 ## Extra stuff
+There's a few more things I found to be somewhat helpful that I feel I should share.
+ 
+### Fixing system blurs
+ 
