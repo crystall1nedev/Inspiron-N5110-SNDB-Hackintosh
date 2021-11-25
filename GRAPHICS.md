@@ -11,7 +11,7 @@ You might notice that none of the cards that were available to order in the Insp
 
 Because of this, we need to do some post-installation steps in order to enable hardware acceleration. Although these patches work, they are still slightly unstable, and they cannot enable features that the graphics card does not support.
 
-## Getting ready to patch your system.
+## Getting ready
 Before you can do anything, you need to get some things down:
 <details>
   <summary>macOS Installation</summary>
@@ -61,3 +61,62 @@ Before you can do anything, you need to get some things down:
 </details>
 
 ## Known issues and drawbacks
+Before we can get you on your way to patching, you need to take note of a few things.
+
+<details>
+ <summary>Apps that require Metal</summary>
+ 
+ Any app that depends on Metal may not work correctly if it works at all. If you can find older versions of the app you want to use, do so. Some examples of apps requiring Metal:
+ 
+ * Pages
+ * Numbers
+ * Keynote
+ * GarageBand
+ * Final Cut Pro
+ * Logic Pro
+ * Motion
+ * Compressor
+</details>
+<details>
+ <summary>Backlight gone with HD 3000</summary>
+ 
+ Once you get hardware acceleration on the iGPU-only model, your backlight might turn off. The onyl way I was able to get around this was by patching my BIOS and enabling hidden menus--**which almost resulted in me bricking my system!** If you don't care about your backlight going out (for, say, you're using this system as a server, like me), enable Remote Management before you run the patches, and give your system a static IP so you can always be sure that you can connect to it.
+</details>
+<details>
+ <summary>Disabled security features</summary>
+ 
+ * System Integrity Protection, specifically:
+   * (Big Sur and higher) Authenticated root, which verifies the contents of the System volume every boot
+   * (Catalina and higher) Filesystem protections, preventing the System volume from being mounted read/write
+   * Kext signing, preventing unsigned kexts from loading
+ * Apple Mobile File Integrity (AMFI)
+   * Responsible for code entitlements and privacy controls
+   * You don't need to disable this if you use the patches I have loaded in Kernel > Patch
+     * Note that the Music app might crash on Big Sur and older with the said patches
+ * FileVault 2
+   * On-the-fly disk encryption for your Data partition
+   * [Disabling SIP disables this](https://support.apple.com/guide/security/signed-system-volume-security-secd698747c9/web)
+   * You don't need to disable this if you use the patches I have loaded in Kernel > Patch.
+ * Apple Secure Boot
+   * SecureBootModel in Misc > Security
+   * Controls what OpenCore will load
+   * Not that much of an issue as it's meant to be paired with UEFI Secure Boot, which doesn't work on BIOS-only systems
+</details>
+<details>
+ <summary>Updating a patched system</summary>
+
+ Delta updates are the smaller updates that only contain what Apple changed between your release and the one you're downloading. Because these patches modify protected directories, delta updating is no longer possible and with each update you will essentially be downloading and reinstalling the operating system. Because this means that everything in /System will be overwritten, your patches will be removed and you will need to rerun them manually.
+</details>
+<details>
+ <summary>OS support</summary>
+ 
+ Take note that these patches are designed to work with Big Sur and higher, work for older macOS releases is experimental with OpenCore Legacy Patcher and can have unintended side effects. 
+ 
+ Updating macOS has the potential to break acceleration patching as well so hold off on updating until you know that the OS in question is capable of being patched. I'll try my best to keep the table at the bottom of this page up to date with the latest in support.
+</details>
+
+## Patching your system
+
+## Extra stuff
+
+## OS Support
