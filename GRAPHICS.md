@@ -234,3 +234,19 @@ sudo mount -o nobrowse -t apfs /dev/disk1s5 /System/Volumes/Update/mnt1
 # And now prepare our kext editing process
 open /System/Volumes/Update/mnt1/System/Library/Extensions/AppleIntelSNBGraphicsFB.kext/Contents/MacOS
 ```
+
+3. **Click into the Finder window that just opened.** Right-click `AppleIntelSNBGraphicsFB` and choose to open it in Hex Fiend.
+
+![Screen Shot 2021-11-25 at 19 55 45](https://user-images.githubusercontent.com/55281754/143511645-2f71b1f0-4d7f-42b8-a602-af837fd9acdd.png)
+
+4. **Press Cmd+F to search.** What you search for depends on the table below.
+<details>
+ <summary>Hex values for video memory</summary>
+ 
+ | Current VRAM | Hex value |
+ | --- | --- |
+ | 384MB | `C7 45 D0 00 00 18` |
+ | 512MB | `C7 45 D0 00 00 20` |
+ | 1024MB | `C7 45 D0 00 00 40` |
+</details>
+ 
