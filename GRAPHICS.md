@@ -76,6 +76,7 @@ Before we can get you on your way to patching, you need to take note of a few th
   * Safari freezes after a while and you need to close the app entirely to fix.
   * VirtualBox doesn't work right on the HD 3000 (see [Extra Stuff](#Extra-Stuff) to fix it
     * Can be fixed, see the Extra Stuff section at the end of this page.
+  * [Issue #108](https://github.com/dortania/OpenCore-Legacy-Patcher/issues/108)
   * Probably some more quirks I just forgot to add lol
 </details>
 <details>
@@ -164,4 +165,72 @@ Quick recap of what you need:
 There's a few more things I found to be somewhat helpful that I feel I should share.
  
 ### Fixing system blurs
+*Update: These fixes do not seem to do anything as of the latest nightly of OpenCore Legayc Patcher. Use 0.3.1 if you want to enable proper blurs.*
+You might notice that, altohugh you have hardware acceleration, system blurs are broken in may places, like sidebars, context menus, Spotlight, and dropdowns. 
+
+![Remote Desktop Picture November 25, 2021 at 17 13 47 EST](https://user-images.githubusercontent.com/55281754/143505434-f25ecd83-bdf6-4451-b9b9-c8a026cf7d3b.png)
  
+The fix for these issues is actually quite simple, open up a terminal and run:
+```bash
+defaults write -g ASB_BlurBeta -bool true
+```
+Do take note that these fixes are still experimental and some apps don't work right with them. If you encounter an app that does not play nice with the fixes:
+```bash
+defaults write <app.bundle.id> ASB_BlurBeta -bool false
+```
+
+![Screen Shot 2021-11-25 at 17 51 11](https://user-images.githubusercontent.com/55281754/143505899-503d1c78-6c6e-4ea2-819a-6ec408d86aac.png)
+
+### Increasing video memory for the HD 3000
+An integrated graphics card works by sharing memory with the system rather than having its own dedicated video memory. The amount of memory dedicated to the iGPU is based on how much memory the system contains:
+<details>
+ <summary>Video memory for the HD 3000</summary>
+ 
+ | Total RAM | Total VRAM |
+ | --- | --- |
+ | Under 8GB | 364MB |
+ | 8-12GB | 512MB |
+ | Higher than 12GB | 1024MB |
+</details>
+
+If you want to force a higher amount of video memory on your HD 3000, you've come to the right place. It's honestly a useless mod, but essential if you want to work with virtual machines.
+ 
+1. **Download Hex Fiend.** This is a free hex editing app that we'll use to adjust our video memory. You can get it [here](https://hexfiend.com). Move it to /Applications, as if you need this modification you need to reapply it with every OS update.
+ 
+2. **Get ready to start typing commands.** Open a new Terminal window and follow these steps:
+
+```bash
+# First we need to list the volumes our system recognizes.
+diskutil list
+ 
+# Now we need to find the system volume. 
+# On macOS Mojave, the System volume is the same as the Data volume.
+# On Catalina and higher, the System Volume shares the same name as the Data volume.
+#
+# /dev/disk0 (internal, physical):
+#    #:                       TYPE NAME                    SIZE       IDENTIFIER
+#    0:      GUID_partition_scheme                        *256.1 GB   disk0
+#    1:                        EFI ⁨EFI⁩                     209.7 MB   disk0s1
+#    2:                 Apple_APFS ⁨Container disk1⁩         255.9 GB   disk0s2
+#
+# /dev/disk1 (synthesized):
+#    #:                       TYPE NAME                    SIZE       IDENTIFIER
+#    0:      APFS Container Scheme -                      +255.9 GB   disk1
+#                                  Physical Store disk0s2
+#    1:                APFS Volume ⁨MacintoshSSD - Data⁩     97.2 GB    disk1s1
+#    2:                APFS Volume ⁨Preboot⁩                 444.7 MB   disk1s2
+#    3:                APFS Volume ⁨Recovery⁩                1.1 GB     disk1s3
+#    4:                APFS Volume ⁨VM⁩                      1.1 MB     disk1s4
+#    5:                APFS Volume ⁨MacintoshSSD⁩            15.9 GB    disk1s5  <- This is our system volume
+#    6:              APFS Snapshot ⁨com.apple.bless.10D5...⁩ 15.9 GB    disk1s5s1
+
+# Make a directory for us to mess around
+# I choose this one because it's less intrusive and the directory should already exist
+sudo mkdir -p /System/Volumes/Update/mnt1
+
+# Now let's mount the system volume as writable (replace /dev/disk1s5 with your actual location)
+sudo mount -o nobrowse -t apfs /dev/disk1s5 /System/Volumes/Update/mnt1
+
+# And now prepare our kext editing process
+open /System/Volumes/Update/mnt1/System/Library/Extensions/AppleIntelSNBGraphicsFB.kext/Contents/MacOS
+```
